@@ -680,6 +680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5723496121894237657}
   - component: {fileID: 8715086510050492408}
+  - component: {fileID: 173983041118649256}
   m_Layer: 0
   m_Name: DartBoard
   m_TagString: Untagged
@@ -737,6 +738,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &173983041118649256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818447228902276625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00638a44361de054098d5425678fdfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2047477598140195506
 GameObject:
   m_ObjectHideFlags: 0

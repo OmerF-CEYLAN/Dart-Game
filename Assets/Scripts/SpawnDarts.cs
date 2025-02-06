@@ -18,9 +18,8 @@ public class SpawnDarts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dartCount < 1)
+        if (GameObject.FindWithTag(dartPrefab.tag) == null)
         {
-            dartCount++;
 
             GameObject newDart = Instantiate(dartPrefab,gameObject.transform.position,Quaternion.Euler(90,0,0));
 

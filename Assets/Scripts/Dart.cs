@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Dart : MonoBehaviour
@@ -20,6 +21,8 @@ public class Dart : MonoBehaviour
 
     Vector3 temp;
 
+    Vector3 lastMousePosition;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -32,15 +35,25 @@ public class Dart : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Input.GetMouseButton(0))
+        {
+            float delta = Input.mousePosition.y - lastMousePosition.y;
+
+            transform.Rotate(delta * Time.deltaTime * 1,0,0 );
+
+        }
+
+        lastMousePosition = Input.mousePosition;
+
         rb.velocity += localGravity;
-        gameObject.transform.Rotate(new Vector3(-rb.velocity.y * rotateSpeed, 0, 0));
+        transform.Rotate(new Vector3(Mathf.Abs(rb.velocity.y) * rotateSpeed, 0, 0));
     }
 
 
     private void OnMouseUpAsButton()
     {
         localGravity = temp;
-        rb.velocity = new Vector3(0, 0, speed);
+        rb.velocity = transform.up * speed;
         isAllowed = true;
     }
 
@@ -50,7 +63,13 @@ public class Dart : MonoBehaviour
         localGravity = Vector3.zero;
         isAllowed = false;
         rb.velocity = Vector3.zero;
+
+        Invoke("DestroyIt",1f);
     }
 
+    void DestroyIt()
+    {
+        Destroy(gameObject);
+    }
 
 }
