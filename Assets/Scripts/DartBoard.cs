@@ -1,10 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DartBoard : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    List<BoardPart> partList;
+
+    [SerializeField]
+    GameObject textObject;
+
+    [SerializeField]
+    int totalPoint;
+
     void Start()
     {
         
@@ -13,11 +22,18 @@ public class DartBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(0, 2, 0);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void UpdateTotalPoints(GameObject obj)
     {
-        Debug.Log(other.gameObject);
+        totalPoint += obj.GetComponent<BoardPart>().point;
+        SetTotalPointText(obj);
     }
+
+    void SetTotalPointText(GameObject obj)
+    {
+        textObject.GetComponent<TextMeshProUGUI>().text = totalPoint.ToString();
+    }
+
 }
